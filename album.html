@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido a mi Álbum ✨</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffe6f0, #e6f7ff);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #ff66a3;
+            margin: 40px 0 20px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .presentacion {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .imagen-side {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 15px #ff66cc;
+        }
+
+        .carrusel-slider {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            overflow: hidden;
+        }
+
+        .foto-link {
+            transition: all 0.4s ease;
+            border-radius: 20px;
+        }
+
+        .foto-link img {
+            width: 200px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid #ffb3d9;
+            box-shadow: 0 0 10px #ff66cc;
+            transition: all 0.4s ease;
+        }
+
+        .carrusel-slider:hover .foto-link {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+
+        .foto-link:hover {
+            opacity: 1 !important;
+            transform: scale(1.08) !important;
+            z-index: 2;
+        }
+
+        .foto-link:hover img {
+            box-shadow: 0 0 20px #ff3399;
+        }
+
+        .mensaje {
+            margin-top: 25px;
+            font-size: 1.1em;
+            color: #666;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .control {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: #ff66a3;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff99cc;
+            transition: background 0.3s;
+            margin-top: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .control:hover {
+            background-color: #ff3385;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 1.5em;
+            pointer-events: none;
+            animation: floatUp 6s ease-in-out forwards;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 6px;
+            background: #ffd6e8;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            width: 16px;
+            height: 16px;
+            background: #ff66a3;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 4px #ff99cc;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #ff66a3;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 4px #ff99cc;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Un tesoro mas valioso que el oro</h1><br><br><br>
+
+    <div class="presentacion">
+        <img src="miku01.webp" alt="Decoración" class="imagen-side">
+
+        <div class="carrusel-slider">
+            <a href="sorpresa1.html" class="foto-link"><img src="kimi1.jpg" alt="Kimsa 1"></a>
+            <a href="sorpresa2.html" class="foto-link"><img src="kimi2.jpg" alt="Kimsa 2"></a>
+            <a href="sorpresa3.html" class="foto-link"><img src="kimi3.jpg" alt="Kimsa 3"></a>
+            <a href="sorpresa4.html" class="foto-link"><img src="kimi4.jpg" alt="Kimsa 4"></a>
+        </div>
+
+        <img src="miku02.webp" alt="Decoración" class="imagen-side">
+    </div>
+
+    <div class="mensaje">
+        <p>Haz clic en una imagen para ver tu sorpresa 💌</p>
+        <br>
+        <a href="index.html" class="control">Cerrar álbum</a>
+    </div>
+
+    <audio id="musica" loop>
+        <source src="album.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
+    <button onclick="document.getElementById('musica').play()" style="
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ff66a3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    z-index: 999;
+    box-shadow: 0 0 10px #ff99cc;
+  ">🎵 Activar música</button>
+
+    <div style="
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    z-index: 999;
+    background: #ffe6f0;
+    padding: 8px 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #ffb6c1;
+  ">
+        <label style="font-size: 0.9em; color: #ff66a3;">Volumen:</label>
+        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volumenSlider">
+    </div>
+
+    <script>
+        const musica = document.getElementById('musica');
+        const volumenSlider = document.getElementById('volumenSlider');
+
+        volumenSlider.addEventListener('input', () => {
+            musica.volume = volumenSlider.value;
+        });
+
+        musica.volume = 0.5;
+
+    </script>
+</body>
+
+</html>

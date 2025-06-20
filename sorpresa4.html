@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Para Kimsa ✨</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fff0f5;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .imagen {
+            width: 250px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            animation: borderGlow 3s infinite ease-in-out;
+            border: 4px solid transparent;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+
+
+        @keyframes borderGlow {
+            0% {
+                box-shadow: 0 0 10px #ff66cc, 0 0 20px #ff99cc;
+                border-color: #ff66cc;
+            }
+
+            50% {
+                box-shadow: 0 0 20px #ff99cc, 0 0 30px #ff66cc;
+                border-color: #ff99cc;
+            }
+
+            100% {
+                box-shadow: 0 0 10px #ff66cc, 0 0 20px #ff99cc;
+                border-color: #ff66cc;
+            }
+        }
+
+        h2 {
+            color: #ff66a3;
+            font-size: 2em;
+            max-width: 500px;
+            z-index: 2;
+            position: relative;
+        }
+
+        a {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            background: #ff66a3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: background 0.3s;
+            z-index: 2;
+            position: relative;
+        }
+
+        a:hover {
+            background: #ff3385;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 1.5em;
+            pointer-events: none;
+            animation: floatUp 6s ease-in-out forwards;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100px;
+            height: 6px;
+            background: #ffd6e8;
+            border-radius: 5px;
+            outline: none;
+            transition: background 0.3s;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #ff66a3;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 4px #ff99cc;
+            transition: background 0.3s;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #ff66a3;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 4px #ff99cc;
+        }
+    </style>
+</head>
+
+<body><br><br>
+    <img src="kimi4.jpg" alt="Kimsa" class="imagen" id="imagen">
+    <h2>Llegaste en el momento que menos lo espere y formaste parte de muchas risas, alegrias que ya no puedo dejar
+        pasar 🤩</h2>
+    <a href="album.html">← Volver</a>
+
+    <audio id="musica" loop>
+        <source src="kimi4.mp3" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+
+    <button onclick="document.getElementById('musica').play()" style="
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ff66a3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    z-index: 999;
+    box-shadow: 0 0 10px #ff99cc;
+">
+        🎵 Activar música
+    </button>
+
+    <div style="
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    z-index: 999;
+    background: #ffe6f0;
+    padding: 8px 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #ffb6c1;
+">
+        <label style="font-size: 0.9em; color: #ff66a3;">Volumen:</label>
+        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volumenSlider">
+    </div>
+
+    <script>
+        const musica = document.getElementById('musica');
+        const volumenSlider = document.getElementById('volumenSlider');
+
+        volumenSlider.addEventListener('input', () => {
+            musica.volume = volumenSlider.value;
+        });
+
+        musica.volume = 0.5;
+    </script>
+
+
+    <script>
+        setInterval(() => {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.innerText = randomHeart();
+
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.color = randomColor();
+            particle.style.fontSize = (Math.random() * 10 + 15) + 'px';
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }, 300);
+
+        function randomHeart() {
+            const hearts = ['❤️', '💕', '💖', '💘', '💗'];
+            return hearts[Math.floor(Math.random() * hearts.length)];
+        }
+
+        function randomColor() {
+            const colors = ['#ff66a3', '#ff99cc', '#ff80bf', '#ff4da6', '#ff5fa2'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+
+</html>
